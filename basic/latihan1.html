@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Belajar Vue.js</title>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand&display=swap" rel="stylesheet">
+    <style>
+        body{
+            margin: 5%;
+            font-family: 'Quicksand', sans-serif;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="app">
+      <header>
+          <img src="../image/logo.png" width="80">
+          <button v-on:click='handleclick'>Ditekan</button>
+          <h1 v-text='bilangan'></h1>
+          <p>Ini adalah bilangan {{ infoBilangan }}</p>
+          <img v-bind:src="gambar" width="500">
+          <p>The progressive javasript framework</p>
+      </header>
+
+      <footer>
+          <p>copyright 2021</p>
+      </footer>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+    
+    <script>
+
+
+      const vm = new Vue({
+        el: '#app',
+        data: {
+          nama: "Bruno",
+          umur: 23,
+          isactive: true,
+          qty: 2,
+          namaDepan: 'Bruno',
+          namaBelakang: 'Fernandes',
+          bilangan: 2,
+          link: '<a href="#">Kelas link</a>',
+          gambar: '../image/gambar.jpeg'
+        },
+        methods: {
+          getname: function(){
+            return "Hello, " + this.nama
+          },
+          getumur: function(){
+            return "umur : " + this.umur
+          },
+          ubahNama: function(namaBaru){
+            this.nama = namaBaru
+          },
+          handleclick: function(){
+            this.bilangan++,
+            this.gambar = '../image/react.png'
+          }
+        },
+        computed: {
+          totalBayar: function(){
+            return this.qty * 20000
+          },
+          namaLengkap:function(){
+            return this.namaDepan + this.namaBelakang
+          },
+          infoBilangan: function(){
+            return this.bilangan%2==0? 'genap': 'ganjil'
+          }
+        }
+      })
+    </script>
+    
+</body>
+</html>
